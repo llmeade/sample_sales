@@ -1,0 +1,39 @@
+<h1><%= @category.name.capitalize %></h1>
+
+<% if signed_in? %>
+  <%= form_for @ad do |f| %>
+    <div class="field">
+      <%= f.label :"Sailer's email " %><br/>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+	  <%= f.label :Description %><br/>
+      <%= f.text_area :content %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Submit" %>
+    </div>
+  <% end %>
+<% end %>
+
+<table class="main">
+  <tr>
+    <% if !signed_in? %>
+      <td><%= link_to "Please sign in to post ads", signin_path %></td>
+	<% else %>
+	  <td><%= "Please post your ad!" %></td>
+	<% end %>
+  </tr>
+</table>
+<table class="profile">
+  <tr>
+    <td class="main">
+      <% unless @category.ads.empty? %>
+        <table class="ads" summary="Category ads">
+          <%= render @ads %>
+        </table>
+        <%= will_paginate @ads %>
+      <% end %>
+    </td>
+  </tr>
+</table>

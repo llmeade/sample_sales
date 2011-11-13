@@ -1,0 +1,12 @@
+<nav class="round">
+  <h2>Welcome</h2><br/>
+  <ul>
+    <li><%= link_to "Home", root_path %></li><br/><br/>
+    <li><%= link_to "New user registration", registration_path %></li><br/>
+	<% if signed_in? %>
+      <li><%= link_to "Sign out", signout_path, :method => :delete %></li><br/>
+    <% else %>
+      <li><%= link_to "Sign in to post ads", signin_path %></li><br/>
+	<% end %>
+  </ul>
+</nav>
